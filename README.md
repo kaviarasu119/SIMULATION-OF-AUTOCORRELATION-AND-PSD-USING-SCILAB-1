@@ -47,6 +47,45 @@ Verify the generated waveform using Tabulation and Model Waveform
 
 __PROGRAM:__
 
+```
+clc;
+clear all;
+close;
+
+t = 0:0.01:%pi*2;
+x = sin(2*t);
+
+
+subplot(3,2,1);
+plot(t, x);
+title('Original Signal');
+
+au = xcorr(x, x);
+subplot(3,2,2);
+plot(au);
+title('Autocorrelation');
+
+
+v = fft(au);
+subplot(3,2,3);
+plot(abs(v));
+title('FFT of Autocorrelation');
+
+
+fw = fft(x);
+subplot(3,2,4);
+plot(abs(fw));
+title('FFT of Original Signal');
+
+
+fw2 = (abs(fw)).^2;
+subplot(3,2,5);
+plot(fw2);
+title('Power Spectrum');
+```
 __OUTPUT:__
 
+<img width="1919" height="1079" alt="image" src="https://github.com/user-attachments/assets/fbea16a7-36c0-4430-b766-a7ff203dbf10" />
+
 __RESULT:__
+Thus the autocorrelation is hence proved and verified successfully.
